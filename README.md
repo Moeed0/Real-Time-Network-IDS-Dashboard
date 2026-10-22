@@ -44,7 +44,7 @@ Local alert collector
 Streamlit dashboard
         |
 Alert intelligence and investigation
-
+```
 ## Sample data
 
 The `sample_data/` directory contains standalone example alert records:
