@@ -1,0 +1,1 @@
+"""Shared IDS application services."""

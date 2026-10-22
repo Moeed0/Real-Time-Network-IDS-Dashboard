@@ -1,0 +1,12 @@
+{
+  "snort": {
+    "rules_path": "data/lab/rules/snort",
+    "rule_format": "snort3",
+    "engine_rule_count": 0
+  },
+  "suricata": {
+    "rules_file": "data/lab/rules/suricata/suricata.rules",
+    "rule_format": "suricata",
+    "engine_rule_count": 0
+  }
+}

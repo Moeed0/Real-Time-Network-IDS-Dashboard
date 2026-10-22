@@ -1,0 +1,49 @@
+# Python and tests
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Local secrets and environments
+.env
+!.env.example
+.venv/
+venv/
+
+# Development backups and runtime state
+.backups/
+.runtime/
+*.bak
+*.bak-*
+*.log
+*.rotated
+*_state.json
+
+# Local SQLite data by default
+*.db
+!data/intel/intel.db
+!data/lab/rules/ids_rules.db
+*.db-wal
+*.db-shm
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# Generated research artifacts
+data/lab/raw/
+data/lab/normalized/
+data/lab/enriched/
+data/lab/analysis/correlation_cases/
+data/lab/intelligence/live_alerts/
+data/intel/sources/
+captures/
+*.pcap
+*.pcapng
+
+# Editors and operating systems
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

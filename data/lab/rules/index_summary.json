@@ -1,0 +1,36 @@
+{
+  "database": "data/lab/rules/ids_rules.db",
+  "engines": {
+    "snort": {
+      "rules_path": "data/lab/rules/snort",
+      "rule_files": 67,
+      "candidate_rule_lines": 47769,
+      "parsed_rules": 47769,
+      "unique_sids": 47769,
+      "parse_failed": 0,
+      "missing_sid": 0,
+      "processing_failed": 0,
+      "engine_reported_loaded_rules": 48014
+    },
+    "suricata": {
+      "rules_file": "data/lab/rules/suricata/suricata.rules",
+      "candidate_rule_lines": 52888,
+      "parsed_rules": 52888,
+      "unique_sids": 52888,
+      "parse_failed": 0,
+      "missing_sid": 0,
+      "processing_failed": 0,
+      "engine_reported_loaded_rules": 52888
+    }
+  },
+  "duplicate_exact_rule_ids": [],
+  "total_indexed_rules": 100657,
+  "index_format": {
+    "database": "SQLite",
+    "native_rule_text_preserved": true,
+    "raw_options_preserved": true,
+    "known_options_extracted": true,
+    "service_style_rules_supported": true,
+    "source_file_and_line_preserved": true
+  }
+}

@@ -1,0 +1,2 @@
+data/intel/intel.db filter=lfs diff=lfs merge=lfs -text
+data/lab/rules/ids_rules.db filter=lfs diff=lfs merge=lfs -text
