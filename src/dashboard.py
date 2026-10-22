@@ -23,6 +23,7 @@ from ids.alert_classification import classify_alert, is_security_related
 from ids.alert_details import load_alert_investigation
 from ids.offline_intelligence import get_offline_live_intelligence
 from ids.live_alert_view import load_live_alert_view_records
+from ids.demo_alerts import load_demo_alerts
 from ids.live_dashboard import (
     get_live_database_status,
     load_correlation_group_alerts,
@@ -752,7 +753,28 @@ def build_alert_dataframe(
             }
         )
 
-    return pd.DataFrame(rows)
+    return pd.DataFrame(
+        rows,
+        columns=[
+            "Record ID",
+            "Engine",
+            "Timestamp",
+            "GID",
+            "SID",
+            "Rev",
+            "Message",
+            "Classification",
+            "Severity",
+            "Protocol",
+            "Service",
+            "Source",
+            "Destination",
+            "CVEs",
+            "MITRE",
+            "CISA KEV",
+            "Project Docs",
+        ],
+    )
 
 
 
@@ -838,17 +860,31 @@ with st.sidebar:
 
 # ============================================================
 # Load enriched records only for pages that use that dataset.
-# Live IDS reads its live tables directly and does not need the full snapshot.
+# A public installation may not have a live IDS database yet.
 alerts = []
 alert_df = pd.DataFrame()
 
 if page in {"Live IDS", "Network Traffic", "Correlation Investigation"}:
     alert_count_placeholder.write("Live database monitoring")
+elif not LIVE_DB_FILE.exists():
+    if page in {"Alert Explorer", "Overview", "Vulnerability Intelligence", "MITRE ATT&CK", "Research Data"}:
+        alerts = load_demo_alerts()
+        if page == "Alert Explorer":
+            alert_df = build_alert_dataframe(alerts)
+        st.info(
+            "Demo Mode — Synthetic Sample Data. "
+            "These bundled examples are not live network activity."
+        )
+        alert_count_placeholder.write(f"**{len(alerts)}** synthetic alert records")
+    else:
+        st.info(
+            "No live IDS database is available. "
+            "This page requires the live collector database."
+        )
+        alert_count_placeholder.write("Live database not initialized")
 else:
     try:
         if page == "Alert Explorer":
-            # Keep the initial list lightweight. Detailed offline intelligence
-            # is loaded only for the alert the analyst inspects or exports.
             alerts = load_dashboard_alert_snapshot(
                 str(LIVE_DB_FILE),
                 include_cached_intelligence=False,
